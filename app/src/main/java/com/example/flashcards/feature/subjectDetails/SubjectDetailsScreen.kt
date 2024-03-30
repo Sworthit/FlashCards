@@ -14,6 +14,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.FloatingActionButton
@@ -46,29 +47,25 @@ fun SubjectDetailsScreen(
         bottomBar = {
                     if (bottomBarState.value) {
                         Row(
-                            modifier = Modifier.fillMaxWidth()
+                            modifier = Modifier
+                                .fillMaxWidth()
                                 .padding(20.dp),
-                            horizontalArrangement = Arrangement.Center
+                            horizontalArrangement = Arrangement.SpaceEvenly
                         ) {
+                            Button(onClick = { navController.navigate("home_route") {
+                                popUpTo(navController.graph.id)
+                            } }) {
+                                Icon(imageVector = Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Go back")
+                            }
                             Button(onClick = { navController.navigate("subject/${viewModel.state.subjectId}/exam") }) {
                                 Text(text = "Test yourself")
+                            }
+                            Button(onClick = { navController.navigate("add_fc_route/${viewModel.state.subjectId}") }) {
+                                Icon(imageVector = Icons.Filled.Add, contentDescription = "Add new subject")
                             }
                         }
                     }
         },
-        floatingActionButtonPosition = FabPosition.End,
-        floatingActionButton = {
-            if (viewModel.state.flashCardList.isNotEmpty()) {
-                FloatingActionButton(
-                    shape = CircleShape,
-                    onClick = {
-                        navController.navigate("add_fc_route/${viewModel.state.subjectId}")
-                    },
-                ) {
-                    Icon(imageVector = Icons.Filled.Add, contentDescription = "Add Icon")
-                }
-            }
-        }
     ) {
         innerPadding ->
         Column(

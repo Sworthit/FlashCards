@@ -29,14 +29,16 @@ class SubjectDetailsViewModel @Inject constructor() : ViewModel() {
                     "_id == $0",
                     ObjectId(subjectId)
                 ).first()
-            subjectDetails.asFlow().collect{ subject ->
-                state = subject.obj?.flashCards?.toList()?.let {
-                    state.copy(
-                        flashCardList = it,
-                        subjectId = subjectId
-                    )
-                }!!
-            }
+            if (subjectDetails != null) (
+                    subjectDetails.asFlow().collect{ subject ->
+                        state = subject.obj?.flashCards?.toList()?.let {
+                            state.copy(
+                                flashCardList = it,
+                                subjectId = subjectId
+                            )
+                        }!!
+                    }
+            )
         }
     }
 

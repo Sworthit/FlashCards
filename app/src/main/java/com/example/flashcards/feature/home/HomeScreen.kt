@@ -1,7 +1,5 @@
 package com.example.flashcards.feature.home
 
-import android.text.Layout.Alignment
-import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
@@ -21,7 +19,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.flashcards.composable.SubjectCard
 import com.example.flashcards.composable.SwipeToDeleteContainer
-import com.example.flashcards.feature.home.homeState.HomeState
 import com.example.flashcards.feature.home.homeViewModel.HomeViewModel
 
 @Composable
